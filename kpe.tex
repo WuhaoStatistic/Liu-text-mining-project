@@ -138,6 +138,19 @@ offer "number of keywords" parameter, the results of two different implementatio
 \end{center}
 \noindent
 
+\section{Discussion}
+Yake is similar to TF-IDF, the weights of each word comes from document-level statistics. But Yake considers
+more features than TF-IDF and the f1-score also reflects that Yake is more advanced than TF-IDF.
+\vspace{11pt}
+\noindent
+Keybert uses BERT to extract the word vectors and considers similarity between words and documents. So, the result is
+highly depends on which pre-trained network is used.
+\vspace{11pt}
+\noindent
+Textrank is based on graph algorithm. Like transformer-based model, it will divide text into different part. The different
+thing is that Textrank will consider those elements as points and edges in a graph. Then a voting system will
+select the most important words.
+
 \section{Conclusion}
 From the experiment results, one can easily see that yake and keybert are much better than other two methods. For this 
 dataset, every document contains averagely 15 golden keywords. And for textrank which does not receive "number of keywords" parameter,
@@ -164,19 +177,7 @@ of key phrase is set in a range from 1 to 4.
     \end{tabular}
 \end{center}
 \noindent
-\section{Discussion}
-Yake is similar to TF-IDF, the weights of each word comes from document-level statistics. But Yake considers
-more features than TF-IDF and the f1-score also reflects that Yake is more advanced than TF-IDF.
-\vspace{11pt}
-\noindent
-Keybert uses BERT to extract the word vectors and considers similarity between words and documents. So, the result is
-highly depends on which pre-trained network is used.
-\vspace{11pt}
-\noindent
-Textrank is based on graph algorithm. Like transformer-based model, it will divide text into different part. The different
-thing is that Textrank will consider those elements as points and edges in a graph. Then a voting system will
-select the most important words.
-\vspace{11pt}
+
 \section{Future Work}
 Based on this project, there are multiple future tasks. The most important thing is thinking how can
 TF-IDF method predict key phrase? Maybe this can be achieved by combining the candidate keywords and re-calculate
