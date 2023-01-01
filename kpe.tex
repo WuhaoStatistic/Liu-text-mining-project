@@ -6,7 +6,7 @@
 \usepackage{caption}
 \usepackage[bookmarks=true, colorlinks, citecolor=blue, linkcolor=black]{hyperref}
 \usepackage[marginal]{footmisc}
-\title{Comparing Different Keywords Extration Methods}
+\title{Comparing Different Key-words Extration Methods}
 \author{Wuhao Wang}
 \date{\today}
 
@@ -15,14 +15,14 @@
 
 
 \begin{abstract}
-Keyword extraction is a important task in NLP fields, many advanced tasks are based on keyword extraction.
+Key-words extraction is a important task in NLP fields, many advanced tasks are based on key-words extraction.
 In this project, TF-IDF, Keybert, TextRank and Yake will be compared. The dataset is from other NLP competations
 and the evaluation is based on f1-score. We found that Keybert and Yake are with the highest f1-score while
-TF-IDF is the most efficient method. Textrank is not flexible since it can not customize the number of keywords.  
+TF-IDF is the most efficient method. Textrank is not flexible since it can not customize the number of key-words.  
 \end{abstract}
 \section{Introduction}
 
-Keywords detecing is always a important task in many text applications. In this project, four methods will be discussed and compared.
+Key-words detecing is always a important task in many text applications. In this project, four methods will be discussed and compared.
 The first methods is TF-IDF$\footnote{\url{https://en.wikipedia.org/wiki/Tf/$\%$E2/$\%$80$\%$93idf}}$, which basically calculate and compare
 the frequency of a specific word in all the text data and one text data. Higher TF-IDF value means higher importance of this word to the text. Another model is
 known as Yake\cite{yake1}\cite{yake2}\cite{yake3}. Yake can be condidered as an extension of TF-IDF, this algorithm will calculate TF-IDF value and also cosine similarity, then a word graph will be 
@@ -40,9 +40,13 @@ and combine them into text summaries.
    % results. Under such circumstance, I would like to try and compare currently popular keywords extraction methods and find out which of them are better in terms of quality and time efficiency.
 \newpage
 \section{Related work}
-In 2018, Bijoyan Das and Sarit Chakraborty raised the method of using TF-IDF to grab keywords that can describe
-sentiment in the text \cite{DBLP}. Shahzad Qaiser and Ramsha Ali used TF-IDF to find the words with highest
-relevance to the documents \cite{234}. Alex Graves used LSTM and other network to perform keyword extraction which gave the inspiration of Keybert\cite{GRAVES2005602}.
+
+Mohammad\text{-}Reza Feizi\text{-}Derakhshi\cite{bmo} used bert model to do key-phrase extraction. The bert model with graph-text-based embedding can reach 0.70 f1-score. 
+MingXi Zhang\cite{article33} tested Textrank algorithm in many key-words extraction dataset, but they only have the precision as evaluation.
+In 2018, Bijoyan Das and Sarit Chakraborty\cite{DBLP} used TF-IDF to grab key-words and use those key-words to do different tasks. In a classification task, they reach 96.83$\%$
+accuracy. Shahzad Qaiser and Ramsha Ali \cite{234}used TF-IDF to find the words with highest
+relevance to the documents , they compared their rank results with the golden label but they did not mention evaluation score like f1-score
+
 
 \section{Data Set}
 The data set used in this project is Inspec \cite{inspec}. The language is English, the original text is collected from scientific paper within computer
@@ -60,8 +64,8 @@ science fields.Below is the numeric features of the data.
 \end{center}
 \noindent
 \textbf{N-docs} is the number of documents contained in the data, \textbf{total Goldkey} is the number
-of gold keywords in the dataset, \textbf{tokens per doc} is average number of tokens in each document,
-\textbf{Absent Godkey} is the percentage of gold keywords that absent in the documents.
+of gold key-words in the dataset, \textbf{tokens per doc} is average number of tokens in each document,
+\textbf{Absent Godkey} is the percentage of gold key-words that absent in the documents.
 
 
 \section{Evaluation}
@@ -75,14 +79,14 @@ f1 &= \frac{2}{recall^-1+precision^-1} \\
 &= \frac{2tp}{2tp+fp+fn}
 \end{aligned}
 $$
-In this project, \textbf{true positive} means if a gold keyword is predicted as a gold keyword,
-\textbf{false negative} means if a gold keyword is predicted as a non gold keyword,\textbf{false positive}
-means if a non gold keyword is predicted as a gold keyword.
+In this project, \textbf{true positive} means if a gold key-word is predicted as a gold key-word,
+\textbf{false negative} means if a gold key-word is predicted as a non gold key-word,\textbf{false positive}
+means if a non gold key-word is predicted as a gold key-word.
 \section{Experiment}
 In this section, the results of each method will be presented and discussed.
 \subsection{TF-IDF}
 For TF-IDF method, this project is referring to spacy package$\footnote{\url{https://github.com/explosion/spaCy}}$.
-The results of TF-IDF method are as follows. N is number of keywords that model would extract, f1 is the corresponding
+The results of TF-IDF method are as follows. N is number of key-words that model would extract, f1 is the corresponding
 f1-score.
 \begin{center}
     \begin{tabular}{cccccc}
@@ -96,7 +100,7 @@ f1-score.
 
 \subsection{Yake}
 For yake model, this project is referring to official package$\footnote{\url{https://github.com/LIAAD/yake}}$.
-The results of yake are as follows. N is number of keywords that model would extract, f1 is the corresponding
+The results of yake are as follows. N is number of key-words that model would extract, f1 is the corresponding
 f1-score. Note that there are many other parameters can be tuned, see appendix for more details.
 \begin{center}
     \begin{tabular}{cccccc}
@@ -110,7 +114,7 @@ f1-score. Note that there are many other parameters can be tuned, see appendix f
 
 \subsection{Keybert}
 For Keybert model, this project is referring to official package$\footnote{\url{https://github.com/MaartenGr/KeyBERT}}$.
-The results of Keybert are as follows. N is number of keywords that model would extract, f1 is the corresponding
+The results of Keybert are as follows. N is number of key-words that model would extract, f1 is the corresponding
 f1-score. Note that there are many other parameters can be tuned, see appendix for more details.
 \begin{center}
     \begin{tabular}{cccccc}
@@ -125,7 +129,7 @@ f1-score. Note that there are many other parameters can be tuned, see appendix f
 \subsection{Textrank}
 For textrank model, this project is referring to two different implementations,one is summaNLP$\footnote{\url{https://github.com/summanlp/textrank}}$,
 another one is spacy $\footnote{\url{https://spacy.io/universe/project/spacy-pytextrank}}$. Textrank algorithm does not
-offer "number of keywords" parameter, the results of two different implementations are as follows:
+offer "number of key-words" parameter, the results of two different implementations are as follows:
 
 \begin{center}
     \begin{tabular}{ccc}
@@ -144,7 +148,7 @@ more features than TF-IDF and the f1-score also reflects that Yake is more advan
 \vspace{11pt}
 \noindent
 Keybert uses BERT to extract the word vectors and considers similarity between words and documents. So, the result is
-highly depends on which pre-trained network is used.
+highly depends on which pre-trained network is used. 
 \vspace{11pt}
 \noindent
 Textrank is based on graph algorithm. Like transformer-based model, it will divide text into different part. The different
@@ -153,16 +157,16 @@ select the most important words.
 
 \section{Conclusion}
 From the experiment results, one can easily see that yake and keybert are much better than other two methods. For this 
-dataset, every document contains averagely 15 golden keywords. And for textrank which does not receive "number of keywords" parameter,
-the f1-score is lower because of too few keywords prediction.In this project, We also try to set "number of keywords = 5" for other
+dataset, every document contains averagely 15 golden key-words. And for textrank which does not receive "number of key-words" parameter,
+the f1-score is lower because of too few key-words prediction.In this project, We also try to set "number of key-words = 5" for other
 models and results are quite similar to textrank.In one word,TF-IDF methods is the fastest method among these four methods while keybert and yake have the highest f1-score.
 \vspace{11pt}
 \noindent
-Note that in Inspec dataset, 37.7$\%$ of keywords do not show up in the text, which means the 'fn' in the f1-score is atleast
+Note that in Inspec dataset, 37.7$\%$ of key-words do not show up in the text, which means the 'fn' in the f1-score is atleast
 0.37. That is a important reason why all the models can not have high f1-score.
 \vspace{11pt}
 \noindent
-The drawback of TF-IDF is obvious. TF-IDF methodcan only get every single keyword. When it comes
+The drawback of TF-IDF is obvious. TF-IDF methodcan only get every single key-word. When it comes
 to key phrase extraction(KPE), TF-IDF method can not work. In this project, the dataset semeval2017 \cite{augenstein-etal-2017-semeval} 
 ,which contains key phrase,is also applied to all of these four models. We pick the same hyperparameters as in the Inspec datasetm, but the length
 of key phrase is set in a range from 1 to 4.
@@ -180,7 +184,7 @@ of key phrase is set in a range from 1 to 4.
 
 \section{Future Work}
 Based on this project, there are multiple future tasks. The most important thing is thinking how can
-TF-IDF method predict key phrase? Maybe this can be achieved by combining the candidate keywords and re-calculate
+TF-IDF method predict key phrase? Maybe this can be achieved by combining the candidate key-words and re-calculate
 the weights. Another thinking is how to improve other models' f1-score.
 \vspace{11pt}
 \noindent
