@@ -12,7 +12,7 @@ def f1_score(gold, pre):
         else:
             fp += 1
     fn = n - tp
-    return 2 * tp / (2 * tp + fp + fn)
+    return 2 * tp / (2 * tp + fp + fn), tp / (tp + fp), tp / (tp + fn)  # f1, pre, recall
 
 
 data = pd.read_csv('data.csv')
@@ -20,20 +20,35 @@ lenn = data.shape[0]
 
 lan = 'en'
 max_size = 1
-ded_th = [0.5, 0.6, 0.7, 0.8, 0.9]
 ded_al = 'seqm'
 w = 1
-nk = [22, 23, 24, 25]
+nk = range(12, 90, 2)
 
 f1 = 0
+pr = 0
+rec = 0
+f_l = []
+pre_l = []
+rec_l = []
 print('start')
-for th in ded_th:
+for th in [0.9]:
     for k in nk:
         model = yake.KeywordExtractor(n=max_size, dedupLim=th, dedupFunc=ded_al, windowsSize=w, top=k)
         for i in range(lenn):
             keywords = model.extract_keywords(data.iloc[i, 0])
             key = [x[0] for x in keywords]
             gld = keyword_list = data['key words'][i].split(' ')
-            f1 += f1_score(gld, key)
-        print('para is th:{} nk:{},f1 :{}'.format(th, k, f1 / lenn))
-        f1=0
+            f1s, ps, rs = f1_score(gld, key)
+            f1 += f1s
+            pr += ps
+            rec += rs
+        f_l.append(f1/lenn)
+        pre_l.append(pr/lenn)
+        rec_l.append(rec/lenn)
+        f1 = 0
+        pr = 0
+        rec = 0
+        print('{} finished'.format(k))
+index = [x for x in range(12, 90, 2)]
+df = pd.DataFrame({'index': index, 'f1': f_l, 'pr': pre_l, 're': rec_l})
+df.to_csv('yake_res.csv')

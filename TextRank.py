@@ -1,7 +1,8 @@
-
 from summa import keywords, summarizer
 import pandas as pd
-#import pytextrank
+
+
+# import pytextrank
 
 # nlp = spacy.load('en_core_web_sm')
 # nlp.add_pipe('textrank')
@@ -21,14 +22,14 @@ def f1_score(gold, pre):
 
 
 #
-#nlp = spacy.load("en_core_web_sm")
+# nlp = spacy.load("en_core_web_sm")
 
-#nlp.add_pipe("textrank")
+# nlp.add_pipe("textrank")
 data = pd.read_csv('data.csv')
 lenth = len(data)
 f1 = 0
 for i in range(lenth):
-    #doc = nlp()
+    # doc = nlp()
     a = keywords.keywords(data.iloc[i, 0]).split('\n')
     b = [x.split(' ') for x in a]
     key = list(set([i for item in b for i in item]))
